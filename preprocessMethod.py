@@ -5,6 +5,7 @@
 import time
 import os
 from PIL import Image
+import cv2
 
 
 def runPreprocess(image_dir):
@@ -22,10 +23,11 @@ def runPreprocess(image_dir):
     for i in range(len(images)):
         startTime = int(round(time.time() * 1000))
         # Open the image file
-        tempImage = Image.open(images[i])
+        # tempImage = Image.open(images[i])
+        tempImage = cv2.imread(images[i],0)
         
         # Do the preprocessing stuff here
-        
+        tempImage = cv2.equalizeHist(tempImage)
         
         
         # The preprocesed images are saved temporarily in memory instead of written into output directory
