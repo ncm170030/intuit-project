@@ -27,13 +27,14 @@ def runPreprocess(image_dir):
         
         # Do the preprocessing stuff here
         
+        '''
         # Contrast/Histogram Eq 1 - OpenCV
         tempCVImg = cv2.imread(images[i],0)
         tmp = cv2.equalizeHist(tempCVImg)
         # OpenCV to PIL
         # tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
         tempImage = Image.fromarray(tmp) 
-        
+        '''
         
         '''
         # Contrast - PIL
@@ -41,10 +42,10 @@ def runPreprocess(image_dir):
         tempImage = enhancer.enhance(4.0)
         '''
         
-        '''
+        
         # Histogram Eq - PIL
         tempImage = ImageOps.autocontrast(tempImage, cutoff=0, ignore=None)
-        '''
+        
         
         '''
         # Resizing - PIL
