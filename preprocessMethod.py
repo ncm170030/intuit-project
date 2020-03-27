@@ -27,8 +27,11 @@ def runPreprocess(image_dir):
         tempImage = cv2.imread(images[i],0)
         
         # Do the preprocessing stuff here
-        tempImage = cv2.equalizeHist(tempImage)
+        tmp = cv2.equalizeHist(tempImage)
         
+        # OpenCV to PIL
+        #tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
+        tempImage = Image.fromarray(tmp) 
         
         # The preprocesed images are saved temporarily in memory instead of written into output directory
         # so calculating the actual processing time won't be affected
