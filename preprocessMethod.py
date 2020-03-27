@@ -41,16 +41,11 @@ def runPreprocess(image_dir):
         tempImage = ImageOps.autocontrast(tempImage, cutoff=0, ignore=None)
         '''
         
-        '''
+        
         # Contrast - PIL
         enhancer = ImageEnhance.Contrast(tempImage)
         tempImage = enhancer.enhance(4.0)
-        '''
         
-        
-        # Resizing - PIL
-        size = (720,1280) #(width,height), idk, 4:3 ratio like 4032X3024
-        tempImage = tempImage.resize(size)
         
         
         # The preprocesed images are saved temporarily in memory instead of written into output directory
@@ -82,7 +77,7 @@ def main():
         
     for i in range(len(processedImages)):
         tempImage = processedImages[i]
-        tempImage.save(output_dir + "/W2_XL_input_noisy_" + str(1000 + i) + ".jpg")
+        tempImage.save(output_dir + "/W2_XL_input_noisy_" + str(1000 + i) + ".jpg", dpi=(300, 300))
         
     print("Saved processed images to results directory")
 
