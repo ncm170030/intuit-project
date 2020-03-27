@@ -4,7 +4,7 @@
 
 import time
 import os
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageOps
 import cv2
 
 
@@ -23,15 +23,28 @@ def runPreprocess(image_dir):
     for i in range(len(images)):
         startTime = int(round(time.time() * 1000))
         # Open the image file
-        # tempImage = Image.open(images[i])
-        tempImage = cv2.imread(images[i],0)
+        tempImage = Image.open(images[i])
         
         # Do the preprocessing stuff here
-        tmp = cv2.equalizeHist(tempImage)
-        
+        '''
+        # Contrast/Histogram Eq 1 - OpenCV
+        tempCVImg = cv2.imread(images[i],0)
+        tmp = cv2.equalizeHist(tempCVImg)
         # OpenCV to PIL
         #tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
         tempImage = Image.fromarray(tmp) 
+        '''
+        
+        # Contrast - PIL
+        enhancer = ImageEnhance.Contrast(tempImage)
+        tempImage = enhancer.enhance(4.0)
+        
+        # Histogram Eq - PIL
+        tempImage = ImageOps.autocontrast(tempImage, cutoff=0, ignore=None)
+        
+        # Resizing - PIL
+        size = (720,1280) #(width,height), idk, 4:3 ratio like 4032X3024
+        tempImage.resize(size)
         
         # The preprocesed images are saved temporarily in memory instead of written into output directory
         # so calculating the actual processing time won't be affected
