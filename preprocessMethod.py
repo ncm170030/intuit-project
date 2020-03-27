@@ -37,14 +37,14 @@ def runPreprocess(image_dir):
         '''
         
         '''
-        # Contrast - PIL
-        enhancer = ImageEnhance.Contrast(tempImage)
-        tempImage = enhancer.enhance(4.0)
+        # Histogram Eq - PIL
+        tempImage = ImageOps.autocontrast(tempImage, cutoff=0, ignore=None)
         '''
         
         
-        # Histogram Eq - PIL
-        tempImage = ImageOps.autocontrast(tempImage, cutoff=0, ignore=None)
+        # Contrast - PIL
+        enhancer = ImageEnhance.Contrast(tempImage)
+        tempImage = enhancer.enhance(4.0)
         
         
         '''
