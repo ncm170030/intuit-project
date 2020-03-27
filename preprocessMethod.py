@@ -26,20 +26,20 @@ def runPreprocess(image_dir):
         tempImage = Image.open(images[i])
         
         # Do the preprocessing stuff here
-        '''
+        
         # Contrast/Histogram Eq 1 - OpenCV
         tempCVImg = cv2.imread(images[i],0)
         tmp = cv2.equalizeHist(tempCVImg)
         # OpenCV to PIL
         tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
         tempImage = Image.fromarray(tmp) 
+        
+        
         '''
-        
-        
         # Contrast - PIL
         enhancer = ImageEnhance.Contrast(tempImage)
         tempImage = enhancer.enhance(4.0)
-        
+        '''
         
         '''
         # Histogram Eq - PIL
