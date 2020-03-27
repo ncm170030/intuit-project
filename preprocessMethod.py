@@ -44,9 +44,11 @@ def runPreprocess(image_dir):
         # Histogram Eq - PIL
         tempImage = ImageOps.autocontrast(tempImage, cutoff=0, ignore=None)
         
+        '''
         # Resizing - PIL
         size = (720,1280) #(width,height), idk, 4:3 ratio like 4032X3024
         tempImage = tempImage.resize(size)
+        '''
         
         # The preprocesed images are saved temporarily in memory instead of written into output directory
         # so calculating the actual processing time won't be affected
