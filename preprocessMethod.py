@@ -31,7 +31,7 @@ def runPreprocess(image_dir):
         tempCVImg = cv2.imread(images[i],0)
         tmp = cv2.equalizeHist(tempCVImg)
         # OpenCV to PIL
-        tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
+        # tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
         tempImage = Image.fromarray(tmp) 
         
         
